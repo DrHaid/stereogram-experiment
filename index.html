@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stereogrammery</title>
+  </head>
+  <body>
+    <div id="app" class="centered-column">
+      <canvas id="stereogram" width="600" height="300"></canvas>
+      <button id="generate">Generate</button>
+      <details>
+        <summary>
+          Height Map
+        </summary>
+        <div class="centered-column">  
+          <canvas id="height" width="300" height="300"></canvas>
+        </div>
+      </details>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
