@@ -11,12 +11,33 @@ body {
   margin: 0 auto;
 }
 
+#heightInput {
+  margin-bottom: 0px;
+}
+
 .centered-column {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-} 
+}
+
+.alert {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(255, 0, 0, 0.699);
+  border-radius: var(--standard-border-radius);
+  box-shadow: none;
+  padding: 8px;
+}
+
+.alert > .closeButton {
+  cursor: pointer;
+}
 
 canvas {
   border: 1px solid var(--accent);
