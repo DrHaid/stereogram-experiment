@@ -1,14 +1,11 @@
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+body > header {
+  padding: 20px;
+  margin-bottom: 32px;
 }
 
 #app {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 24px auto;
 }
 
 #heightInput {

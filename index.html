@@ -4,18 +4,23 @@
     <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stereogrammery</title>
+    <title>Stereogram</title>
   </head>
   <body>
+    <header>
+      <h1>Stereogram Generator</h1>
+      <p>A simple custom <a href="https://en.wikipedia.org/wiki/Autostereogram" target="_blank">autostereogram</a> generator.</p>
+    </header>
     <div id="app" class="centered-column">
       <canvas id="stereogram" width="600" height="300"></canvas>
-      <button id="generate">Generate</button>
+      <button id="generate">Re-generate</button>
       <details>
         <summary>
           Height Map
         </summary>
         <div id="heightMapContainer" class="centered-column">  
           <canvas id="height" width="300" height="300"></canvas>
+          <select id="heightSelect">
           <input type="file" id="heightInput" accept="image/png">
         </div>
       </details>
