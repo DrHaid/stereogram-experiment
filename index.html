@@ -16,12 +16,35 @@
       <button id="generate">Re-generate</button>
       <details>
         <summary>
-          Height Map
+          Settings
         </summary>
-        <div id="heightMapContainer" class="centered-column">  
-          <canvas id="height" width="300" height="300"></canvas>
-          <select id="heightSelect">
-          <input type="file" id="heightInput" accept="image/png">
+        <div class="settings">
+          <div id="heightMapContainer" class="settings-column">  
+            <div>
+            <label for="height">Height Map</label>
+            <canvas id="height" width="300" height="300"></canvas>
+          </div>
+            <select id="heightSelect">
+            <input type="file" id="heightInput" accept="image/png">
+          </div>
+          <div class="divider"></div>
+          <div class="settings-column">
+          <div>
+            <label for="strengthInput">Strength</label>
+            <input id="strengthInput" type="range" min="1" max="30">
+          </div>
+          <fieldset>
+            <legend>Viewing Mode</legend>
+            <div>
+              <input name="viewingMode" id="crossEyeRadio" type="radio">
+              <label for="crossEye">Cross Eye</label>
+            </div>
+            <div>
+              <input name="viewingMode" id="parallelRadio" type="radio">
+              <label for="parallel">Parallel</label>
+            </div>
+          </fieldset>
+          </div>
         </div>
       </details>
     </div>

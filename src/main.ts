@@ -23,6 +23,9 @@ var heightCanvas: CanvasData;
 var heightMap: HeightMap;
 var stereogram: Stereogram;
 
+var depth = 20;
+var crossView = true;
+
 const addAlertBanner = (targetParent: HTMLElement, message: string) => {
   const container = document.createElement("div");
   container.className = "alert";
@@ -59,26 +62,44 @@ const loadHeightMap = (src?: string) => {
 };
 
 const initInputs = () => {
-  const button = document.getElementById("generate") as HTMLButtonElement;
-  button.onclick = generateStereogram;
+  const generateButton = document.getElementById("generate") as HTMLButtonElement;
+  generateButton.onclick = generateStereogram;
 
-  const select = document.getElementById("heightSelect") as HTMLSelectElement;
-  select.onchange = handleSelectChange;
+  const heightSelect = document.getElementById("heightSelect") as HTMLSelectElement;
+  heightSelect.onchange = handleSelectChange;
   HEIGHT_MAPS.forEach(map => {
     const option = document.createElement('option');
     option.value = map.src;
     option.textContent = map.name;
-    select.appendChild(option);
+    heightSelect.appendChild(option);
   });
-  select.value = ringHeightMap; // set default heightMap
+  heightSelect.value = ringHeightMap; // set default heightMap
 
-  const input = document.getElementById("heightInput") as HTMLInputElement;
-  input.onchange = handleInputChange;
+  const heightInput = document.getElementById("heightInput") as HTMLInputElement;
+  heightInput.onchange = handleHeightInputChange;
+
+  const strengthSlider  = document.getElementById("strengthInput") as HTMLInputElement;
+  strengthSlider.value = String(depth);
+  strengthSlider.onchange = handleStrengthChange;
+  
+  // radio buttons
+  const crossEyeRadio = document.getElementById("crossEyeRadio") as HTMLInputElement;
+  const parallelRadio = document.getElementById("parallelRadio") as HTMLInputElement;
+  crossEyeRadio.checked = crossView;
+  parallelRadio.checked = !crossView;
+  crossEyeRadio.onchange = () => {
+    crossView = true;
+    generateStereogram();
+  };
+  parallelRadio.onchange = () => {
+    crossView = false;
+    generateStereogram();
+  };
 };
 
 const generateStereogram = () => {
   const noise = new Noise(stereoCanvas.width / 2, stereoCanvas.height);
-  stereogram = new Stereogram(noise, heightMap);
+  stereogram = new Stereogram(noise, heightMap, depth, crossView);
   if (stereoCanvas.ctx){
     stereogram.draw(stereoCanvas.ctx);
   }
@@ -89,7 +110,7 @@ const handleSelectChange = (input: Event) => {
   loadHeightMap(target.value);
 };
 
-const handleInputChange = (input: Event) => {
+const handleHeightInputChange = (input: Event) => {
   const target = input.target as HTMLInputElement;
   if (!target.files) return;
 
@@ -104,6 +125,12 @@ const handleInputChange = (input: Event) => {
   option.textContent = target.files[0].name;
   select.appendChild(option);
   select.value = src;
+};
+
+const handleStrengthChange = (input: Event) => {
+  const target = input.target as HTMLInputElement;
+  depth = Number(target.value);
+  generateStereogram();
 };
 
 initInputs();

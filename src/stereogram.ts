@@ -8,14 +8,16 @@ export class Stereogram {
   width: number;
   height: number;
   data: Array<Array<number>>;
+  crossView: boolean;
 
-  constructor(noise: Noise, heightMap: HeightMap) {
+  constructor(noise: Noise, heightMap: HeightMap, depth?: number, crossView: boolean = true) {
     this.baseNoise = noise;
     this.heightMap = heightMap;
     this.check_noise_height_dimensions();
     this.width = noise.width * 2;
     this.height = noise.height;
-    this.depth = 20;
+    this.depth = depth ?? 20;
+    this.crossView = crossView;
     this.data = [];
     this.#generate();
   }
@@ -39,7 +41,16 @@ export class Stereogram {
         const heightValue = this.heightMap.data[y][x];
         const noiseValue = this.baseNoise.data[y][x];
         const shift = Math.round(heightValue * this.depth);
-        const shiftedX = Math.min(Math.max(0, x - shift), this.baseNoise.width);
+        
+        let shiftedX;
+        if (this.crossView) {
+          // Cross-eye view: shift left
+          shiftedX = Math.min(Math.max(0, x - shift), this.baseNoise.width);
+        } else {
+          // Parallel view: shift right
+          shiftedX = Math.min(Math.max(0, x + shift), this.baseNoise.width);
+        }
+        
         this.data[y][shiftedX] = noiseValue;
       }
     }

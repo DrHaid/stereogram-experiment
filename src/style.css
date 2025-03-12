@@ -12,6 +12,27 @@ body > header {
   margin-bottom: 0px;
 }
 
+.settings {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 12px;
+}
+
+.settings-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.divider {
+  border-left: 1px solid var(--border);
+}
+
+input[type="range"] {
+  width: 100%;
+}
+
 .centered-column {
   display: flex;
   flex-direction: column;
