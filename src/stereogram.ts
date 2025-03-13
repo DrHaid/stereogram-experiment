@@ -10,13 +10,13 @@ export class Stereogram {
   data: Array<Array<number>>;
   crossView: boolean;
 
-  constructor(noise: Noise, heightMap: HeightMap, depth?: number, crossView: boolean = true) {
+  constructor(noise: Noise, heightMap: HeightMap, depth: number = 20, crossView: boolean = true) {
     this.baseNoise = noise;
     this.heightMap = heightMap;
     this.check_noise_height_dimensions();
     this.width = noise.width * 2;
     this.height = noise.height;
-    this.depth = depth ?? 20;
+    this.depth = depth;
     this.crossView = crossView;
     this.data = [];
     this.#generate();
@@ -30,7 +30,8 @@ export class Stereogram {
   }
 
   #generate() {
-    this.data = this.baseNoise.data;
+    // copy noise data as foundation for stereogram
+    this.data = JSON.parse(JSON.stringify(this.baseNoise.data));
 
     for (let y = 0; y < this.height; y++) {
       this.data[y].push(...this.baseNoise.data[y])
