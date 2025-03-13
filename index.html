@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stereogram</title>
+    <script type="module" crossorigin src="/assets/index--5Uzg425.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DgxAKkC9.css">
+  </head>
+  <body>
+    <header>
+      <h1>Stereogram Generator</h1>
+      <p>A simple custom <a href="https://en.wikipedia.org/wiki/Autostereogram" target="_blank">autostereogram</a> generator.</p>
+    </header>
+    <div id="app" class="centered-column">
+      <canvas id="stereogram" width="600" height="300"></canvas>
+      <button id="generate">Re-generate</button>
+      <details>
+        <summary>
+          Settings
+        </summary>
+        <div class="settings">
+          <div id="heightMapContainer" class="settings-column">  
+            <div>
+            <label for="height">Height Map</label>
+            <canvas id="height" width="300" height="300"></canvas>
+          </div>
+            <select id="heightSelect">
+            <input type="file" id="heightInput" accept="image/png">
+          </div>
+          <div class="divider"></div>
+          <div class="settings-column">
+          <div>
+            <label for="depthInput">Depth</label>
+            <input id="depthInput" type="range" min="1" max="30">
+          </div>
+          <fieldset>
+            <legend>Viewing Mode</legend>
+            <div>
+              <input name="viewingMode" id="crossEyeRadio" type="radio">
+              <label for="crossEyeRadio">Cross Eye</label>
+            </div>
+            <div>
+              <input name="viewingMode" id="parallelRadio" type="radio">
+              <label for="parallelRadio">Parallel</label>
+            </div>
+          </fieldset>
+          </div>
+        </div>
+      </details>
+    </div>
+  </body>
+</html>
