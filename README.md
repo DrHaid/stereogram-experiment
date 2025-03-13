@@ -1,2 +1,4 @@
 # stereogram-experiment
-stereogram generator maybe?
+stereogram generator maybe? probably
+
+## https://drhaid.github.io/stereogram-experiment/
